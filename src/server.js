@@ -11,6 +11,7 @@ const urlStruct = {
   GET: {
     '/': htmlHandler.getIndex,
     '/style.css': htmlHandler.getCSS,
+    '/addUser': jsonHandler.addUser,
     '/getUsers': jsonHandler.getUsers,
     '/notReal': jsonHandler.notReal,
     notFound: jsonHandler.notFound,
@@ -47,6 +48,8 @@ const urlStruct = {
 
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
+  // console.dir(parsedUrl);
+  console.dir(`url if ${urlStruct[request.method][parsedUrl.pathname]}`);
 
   if (urlStruct[request.method][parsedUrl.pathname]) {
     urlStruct[request.method][parsedUrl.pathname](request, response);

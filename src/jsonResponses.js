@@ -29,6 +29,33 @@ const getUsers = (request, response) => {
 
 const getUsersMeta = (request, response) => respondJSONMeta(request, response, 200);
 
+const addUser = (request, response, body) => {
+  const responseObjectJSON = {
+    message: 'Name and age are both required',
+  };
+
+  if (!body.name || !body.age) {
+    responseObjectJSON.id = 'missingParams';
+    return respondJSON(request, response, 400, responseObjectJSON);
+  }
+
+  let responseCode = 201;
+  if (users[body.name]) {
+    responseCode = 204;
+  } else {
+    users[body.name] = {};
+  }
+
+  users[body.name].name = body.name;
+  users[body.name].age = body.age;
+
+  if (responseCode === 201) {
+    responseObjectJSON.message = 'Created Successfully';
+    return respondJSON(request, response, responseCode, responseObjectJSON);
+  }
+  return respondJSONMeta(request, response, responseCode);
+};
+
 const notReal = (request, response) => {
   const responseObjectJSON = {
     message: 'Error: 404 not found',
@@ -60,6 +87,7 @@ const notFoundMeta = (request, response) => {
 module.exports = {
   getUsers,
   getUsersMeta,
+  addUser,
   notReal,
   notRealMeta,
   notFound,
