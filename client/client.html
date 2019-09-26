@@ -44,9 +44,6 @@
         case 404: //updated (no response back from server)
           content.innerHTML = '<b>Resource Not Found</b>';
           return;
-        case 400: //bad request
-          content.innerHTML = `<b>Bad Request</b>`;
-          break;
         default: //any other status code
           content.innerHTML = `Error code not implemented by client.`;
           break;
@@ -86,8 +83,10 @@
       
       xhr.setRequestHeader('Accept', 'application/json');
       if(method == 'get') {
+        console.dir('get');
         xhr.onload = () => handleResponse(xhr, true);
       } else {
+        console.dir('not get');
         xhr.onload = () => handleResponse(xhr, false);
       }
       xhr.send();

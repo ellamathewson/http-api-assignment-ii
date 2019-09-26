@@ -68,6 +68,7 @@ const addUser = (request, response, body) => {
 };
 
 const notReal = (request, response) => {
+  console.dir('in notRealMeta');
   const responseJSON = {
     message: 'The page you are looking for was not found',
     id: 'notFound',

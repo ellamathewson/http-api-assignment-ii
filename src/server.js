@@ -54,14 +54,6 @@ const handleGet = (request, response, parsedUrl) => {
   } else {
     urlStruct[request.method].notFound(request, response);
   }
-  // route to correct method based on url
-//   if (parsedUrl.pathname === '/style.css') {
-//     htmlHandler.getCSS(request, response);
-//   } else if (parsedUrl.pathname === '/getUsers') {
-//     jsonHandler.getUsers(request, response);
-//   } else {
-//     htmlHandler.getIndex(request, response);
-//   }
 };
 
 const onRequest = (request, response) => {
