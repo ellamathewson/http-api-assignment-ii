@@ -50,6 +50,7 @@ const handlePost = (request, response, parsedUrl) => {
 
 const handleGet = (request, response, parsedUrl) => {
   if (urlStruct[request.method][parsedUrl.pathname]) {
+    console.dir(urlStruct[request.method][parsedUrl.pathname]);
     urlStruct[request.method][parsedUrl.pathname](request, response);
   } else {
     urlStruct[request.method].notFound(request, response);
@@ -58,7 +59,6 @@ const handleGet = (request, response, parsedUrl) => {
 
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
-
   if (request.method === 'POST') {
     handlePost(request, response, parsedUrl);
   } else {

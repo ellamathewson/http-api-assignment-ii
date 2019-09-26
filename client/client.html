@@ -7,12 +7,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script type="text/babel">
     const parseJSON = (xhr, content) => {
+      console.dir('in parse');
       if(xhr.response) {
         const obj = JSON.parse(xhr.response);
       console.dir(obj);
       
       //if message in response, add to screen
       if(obj.message) {
+        console.dir('object');
         const p = document.createElement('p');
         p.textContent = `Message: ${xhr.response}`;
         content.appendChild(p);
@@ -29,6 +31,7 @@
     };
 
     const handleResponse = (xhr) => {
+      console.dir('in handle response');
       const content = document.querySelector('#content');
       //check the status code
       switch(xhr.status) {
@@ -42,12 +45,14 @@
           content.innerHTML = '<b>Updated (No Content)</b>';
           return;
         case 404: //updated (no response back from server)
+        console.dir('404 error');
           content.innerHTML = '<b>Resource Not Found</b>';
           return;
         default: //any other status code
           content.innerHTML = `Error code not implemented by client.`;
           break;
       }
+      console.dir('outside of switch');
       parseJSON(xhr, content);
     };
 
