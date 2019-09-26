@@ -2,7 +2,7 @@
   "name": "http-api-assignment-ii",
   "version": "1.0.0",
   "engines": {
-    "node": "12.10.0",
+    "node": "10.16.0",
     "npm": "6.9.0"
   },
   "description": "Part 2 of HTTP Assignment",
